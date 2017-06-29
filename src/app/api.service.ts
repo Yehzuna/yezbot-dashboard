@@ -8,17 +8,17 @@ import { Cheer } from './models/cheer';
 
 @Injectable()
 export class ApiService {
-
   private base = 'http://yezbot.local/api/';
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
-  getConfig(channel: string): Promise<Config[]> {
+  getConfig(channel: string): Promise<Config> {
     const url = `${this.base}${channel}/config`;
 
     return this.http.get(url)
         .toPromise()
-        .then(response => response.json().data as Config[])
+        .then(response => response.json() as Config)
         .catch(this.handleError);
   }
 

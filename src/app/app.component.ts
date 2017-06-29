@@ -11,10 +11,18 @@ import {ApiService} from './api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  channel: '';
-  config: Config[];
+    config: Config;
 
-  constructor (private apiService: ApiService) {}
+    constructor (private apiService: ApiService) {}
 
-  ngOnInit() { }
+    ngOnInit(): void {
+        this.getConfig();
+    }
+
+    getConfig(): void {
+      this.apiService.getConfig('test').then(config => {
+        console.log('test', config);
+        this.config = config
+      });
+    }
 }
