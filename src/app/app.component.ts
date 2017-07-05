@@ -6,9 +6,9 @@ import { Cheer } from './models/cheer';
 import {ApiService} from './api.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
     config: Config;
@@ -20,9 +20,9 @@ export class AppComponent implements OnInit {
     }
 
     getConfig(): void {
-      this.apiService.getConfig('test').then(config => {
-        console.log('test', config);
-        this.config = config
-      });
+        this.apiService.getConfig('test').subscribe(config => {
+            console.log('test', config);
+            this.config = config
+        });
     }
 }

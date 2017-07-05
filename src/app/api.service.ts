@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import { Config } from './models/config';
 import { Cheer } from './models/cheer';
@@ -13,17 +15,20 @@ export class ApiService {
 
   constructor(private http: Http) { }
 
-  getConfig(channel: string): Promise<Config> {
+  getConfig(channel: string): Observable<Config> {
     const url = `${this.base}${channel}/config`;
 
     return this.http.get(url)
-        .toPromise()
-        .then(response => response.json() as Config)
+        .map(response => {
+          const config: Config = response.json();
+          console.log(config);
+          return config;
+        })
         .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
+  private handleError(error: any): Observable<any> {
     console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
+    return Observable.throw(error.message);
   }
 }
