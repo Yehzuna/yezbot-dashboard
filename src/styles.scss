@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/variables";
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: $font-family;
+}
+
+body {
+  background: $body-bg-color;
+  color: $text-color;
+}
+
+a {
+  color: $text-color;
+  &:hover {
+    color: #408BEA;
+  }
+}
