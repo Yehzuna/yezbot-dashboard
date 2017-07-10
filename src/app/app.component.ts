@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Config } from './models/config';
-import { Cheer } from './models/cheer';
+import { Config } from './_models/config';
+import { Cheer } from './_models/cheer';
 
-import {ApiService} from './api.service';
+import { ApiService } from './_services/api.service';
+import { MenuService } from './menu/menu.service';
 
 @Component({
     selector: 'app-root',
@@ -16,13 +17,16 @@ export class AppComponent implements OnInit {
     constructor (private apiService: ApiService) {}
 
     ngOnInit(): void {
+        console.log('init');
         this.getConfig();
     }
 
     getConfig(): void {
+         /*
         this.apiService.getConfig('test').subscribe(config => {
-            console.log('test', config);
+            //console.log('test', config);
             this.config = config
         });
+        */
     }
 }

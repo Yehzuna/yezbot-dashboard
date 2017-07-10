@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
-import { Config } from './models/config';
-import { Cheer } from './models/cheer';
+import { Cheer } from '../_models/cheer';
+import { Config } from '../_models/config';
 
 @Injectable()
 export class ApiService {

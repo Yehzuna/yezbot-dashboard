@@ -1,8 +1,12 @@
-.box {
+.box-container {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+}
+
+.box {
+  width: 300px;
   margin: 20px;
   padding: 20px;
   background: #171d22;
