@@ -1,3 +1,6 @@
+$fa-font-path:"../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome";
+
 @import "assets/styles/variables";
 
 body,
@@ -14,8 +17,8 @@ body {
 }
 
 a {
-  color: $text-color;
+  color: $link-color;
   &:hover {
-    color: #408BEA;
+    color: $link-color-hover;
   }
 }

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(
       private loginService: LoginService,
       private route: ActivatedRoute,
-      //private router: Router
+      private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,5 +24,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.login();
+
+    this.router.navigate([this.returnUrl]);
   }
 }

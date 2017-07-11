@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu, MenuService } from './menu.service';
+import { MenuService } from './menu.service';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,11 +8,17 @@ import { Menu, MenuService } from './menu.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  private menuItems: Menu[];
+  public menuItems: Array<Object>;
 
-  constructor(private menuService: MenuService) { }
+  constructor(
+      private menuService: MenuService,
+      private loginService: LoginService
+  ) { }
 
   ngOnInit() {
-    this.menuItems = this.menuService.getMenuItems();
+    console.log('login');
+    if (this.loginService.isAuth()) {
+      this.menuItems = this.menuService.getMenuItems();
+    }
   }
 }

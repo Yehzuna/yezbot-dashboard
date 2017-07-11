@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
     constructor (private apiService: ApiService) {}
 
     ngOnInit(): void {
-        console.log('init');
         this.getConfig();
     }
 
