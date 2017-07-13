@@ -1,27 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EmotesComponent } from './emotes/emotes.component';
-import { LoginComponent } from './login/login.component';
-
-import { LoginGuard } from './login/login.guard';
+import { AuthGuard } from './login/auth.guard';
 
 const routes: Routes = [
     {
         path: '',
-        component: DashboardComponent,
-        canActivate: [LoginGuard]
+        loadChildren: 'app/front/front.module#FrontModule',
     }, {
         path: 'login',
-        component: LoginComponent
+        loadChildren: 'app/login/login.module#LoginModule',
     }, {
-        path: 'logout',
-        component: LoginComponent
-    }, {
-        path: 'emotes',
-        component: EmotesComponent,
-        canActivate: [LoginGuard]
+        path: 'dashboard',
+        loadChildren: 'app/back/back.module#BackModule',
+        canLoad: [AuthGuard]
     }, {
         path: '**',
         redirectTo: ''
@@ -36,5 +28,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class RoutingModule {
-}
+export class RoutingModule { }

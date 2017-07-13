@@ -1,43 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {
+    MdButtonModule,
+    MdRippleModule
+} from '@angular/material';
 
 import { RoutingModule } from './app.routing';
 
-import { ApiService } from './_services/api.service';
-import { MenuService } from './menu/menu.service';
-import { LoginService } from './login/login.service';
+import { AuthService } from './login/auth.service';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { MenuComponent } from './menu/menu.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EmotesComponent } from './emotes/emotes.component';
-import { LoginComponent } from './login/login.component';
-
-import { LoginGuard } from './login/login.guard';
+import { NavbarComponent } from './common/navbar/navbar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent,
-        MenuComponent,
-        DashboardComponent,
-        EmotesComponent,
-        LoginComponent
+        NavbarComponent
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         HttpModule,
+        MdButtonModule,
+        MdRippleModule,
         RoutingModule
     ],
     providers: [
-        ApiService,
-        MenuService,
-        LoginService,
-        LoginGuard,
+        AuthService,
     ],
     bootstrap: [
         AppComponent

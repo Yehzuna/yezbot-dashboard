@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
-import { LoginService } from '../login/login.service';
+import { AuthService } from '../../login/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,12 +12,12 @@ export class MenuComponent implements OnInit {
 
   constructor(
       private menuService: MenuService,
-      private loginService: LoginService
+      private authService: AuthService
   ) { }
 
   ngOnInit() {
     console.log('login');
-    if (this.loginService.isAuth()) {
+    if (this.authService.isAuth()) {
       this.menuItems = this.menuService.getMenuItems();
     }
   }

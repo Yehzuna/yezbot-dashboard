@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <div *ngFor="let item of items">
+        <a class="item item-link" [ngClass]="item.css" [routerLink]="item.routerLink" md-ripple mdRippleColor="rgba(200,200,200,.1)">
+            <span class="fa" [ngClass]="item.icon"></span> {{ item.title }}
+        </a>
+    </div>
+
+    <!--
+    <a class="item item-link logo" md-ripple mdRippleColor="rgba(200,200,200,.1)" routerLink=""><span class="fa fa-home"></span> Dashboard</a>
+    <div class="item"><span class="fa fa-user"></span> Jean Michel</div>
+    <a class="item item-link logout" md-ripple mdRippleColor="rgba(200,200,200,.1)" routerLink="logout"><span class="fa fa-sign-out"></span> Logout</a>
+    <a class="item item-link" md-ripple mdRippleColor="rgba(200,200,200,.1)"><span class="fa fa-users"></span> Switch user</a>
+    -->
+</nav>

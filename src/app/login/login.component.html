@@ -1,17 +1,13 @@
 <div class="login">
     <h2>Login</h2>
-    <form name="form" (ngSubmit)="login()" #loginForm="ngForm">
+    <form name="form" (ngSubmit)="login()">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" required />
+            <md-input-container>
+                <input mdInput placeholder="Username">
+            </md-input-container>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" required />
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" md-button>Login</button>
         </div>
     </form>
 </div>
