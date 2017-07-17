@@ -18,13 +18,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'dashboard';
   }
 
   login() {
-    this.authService.login();
-
-    this.router.navigate([this.returnUrl]);
+    this.authService.login().subscribe(() => {
+      this.router.navigate([this.returnUrl]);
+    });
   }
 }

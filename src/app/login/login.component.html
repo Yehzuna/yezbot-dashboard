@@ -1,13 +1,4 @@
 <div class="login">
     <h2>Login</h2>
-    <form name="form" (ngSubmit)="login()">
-        <div class="form-group">
-            <md-input-container>
-                <input mdInput placeholder="Username">
-            </md-input-container>
-        </div>
-        <div class="form-group">
-            <button type="submit" md-button>Login</button>
-        </div>
-    </form>
+    <button (click)="login()" md-raised-button>Login</button>
 </div>

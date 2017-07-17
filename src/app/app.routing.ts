@@ -3,17 +3,28 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './login/auth.guard';
 
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 const routes: Routes = [
     {
         path: '',
-        loadChildren: 'app/front/front.module#FrontModule',
+        component: HomeComponent,
     }, {
         path: 'login',
-        loadChildren: 'app/login/login.module#LoginModule',
+        component: LoginComponent,
+    }, {
+        path: 'logout',
+        component: LoginComponent,
     }, {
         path: 'dashboard',
-        loadChildren: 'app/back/back.module#BackModule',
-        canLoad: [AuthGuard]
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
+    }, {
+        path: 'emotes',
+        loadChildren: 'app/emotes/emotes.module#EmotesModule',
+        canActivate: [AuthGuard]
     }, {
         path: '**',
         redirectTo: ''

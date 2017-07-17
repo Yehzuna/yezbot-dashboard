@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login.component';
+import { EmotesComponent } from './emotes.component';
 
 const loginRoutes: Routes = [
-    { path: '', component: LoginComponent }
+    { path: '', component: EmotesComponent }
 ];
 
 @NgModule({
@@ -15,4 +15,4 @@ const loginRoutes: Routes = [
         RouterModule
     ],
 })
-export class LoginRoutingModule { }
+export class EmotesRoutingModule { }

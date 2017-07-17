@@ -1,0 +1,26 @@
+<nav class="navbar">
+    <a class="item item-link home" routerLink="" md-ripple mdRippleColor="rgba(200,200,200,.1)" *ngIf="!dashboard">
+        <span class="fa fa-home"></span> Home
+    </a>
+
+    <a class="item item-link home" routerLink="dashboard" md-ripple mdRippleColor="rgba(200,200,200,.1)" *ngIf="dashboard">
+        <span class="fa fa-home"></span> Dashboard
+    </a>
+
+    <div class="item" *ngIf="logged"><span class="fa fa-user"></span> Jean Michel</div>
+
+    <a class="item item-link logout" (click)="logout()" md-ripple mdRippleColor="rgba(200,200,200,.1)" *ngIf="logged">
+        <span class="fa fa-sign-out"></span> Logout
+    </a>
+
+    <a class="item item-link login" routerLink="login" md-ripple mdRippleColor="rgba(200,200,200,.1)" *ngIf="!logged">
+        <span class="fa fa-sign-in"></span> Sign in / Login
+    </a>
+
+    <!--
+    <a class="item item-link logo" md-ripple mdRippleColor="rgba(200,200,200,.1)" routerLink=""><span class="fa fa-home"></span> Dashboard</a>
+    <div class="item"><span class="fa fa-user"></span> Jean Michel</div>
+    <a class="item item-link logout" md-ripple mdRippleColor="rgba(200,200,200,.1)" routerLink="logout"><span class="fa fa-sign-out"></span> Logout</a>
+    <a class="item item-link" md-ripple mdRippleColor="rgba(200,200,200,.1)"><span class="fa fa-users"></span> Switch user</a>
+    -->
+</nav>
