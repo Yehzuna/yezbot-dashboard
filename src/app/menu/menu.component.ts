@@ -17,7 +17,6 @@ export class MenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('login');
     if (this.authService.isAuth()) {
       this.menuItems = this.menuService.getMenuItems();
     }

@@ -10,6 +10,7 @@ import {
 
 import { RoutingModule } from './app.routing';
 
+import { AlertService } from './alert/alert.service';
 import { AuthService } from './login/auth.service';
 import { MenuService } from './menu/menu.service';
 
@@ -21,6 +22,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
     imports: [
@@ -39,8 +41,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         HomeComponent,
         LoginComponent,
         DashboardComponent,
+        AlertComponent,
     ],
     providers: [
+        AlertService,
         AuthService,
         MenuService,
         AuthGuard

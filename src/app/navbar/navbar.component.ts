@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { AuthService } from '../login/auth.service';
@@ -8,21 +8,25 @@ import { AuthService } from '../login/auth.service';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit  {
     public dashboard: boolean;
     public logged: boolean;
     public role: string;
 
     constructor(
+        private authService: AuthService,
         private router: Router,
-        private authService: AuthService
     ) {
         this.dashboard = false;
         this.logged = false;
+        this.role = 'user';
+    }
 
-        router.events.subscribe(event => {
+    ngOnInit() {
+        this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 console.log(event);
+                // this.refresh(event.url);
             }
         });
     }
