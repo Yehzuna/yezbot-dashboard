@@ -1,0 +1,155 @@
+<md-card style="width: 500px">
+  <form name="form" id="form" class="boss-form">
+
+  <md-card-header>
+    <md-card-title><h2>BossMod</h2></md-card-title>
+  </md-card-header>
+  <md-card-content class="form-container">
+
+    <md-input-container class="form-row">
+      <input mdInput placeholder="Channel" value="channel" disabled />
+    </md-input-container>
+
+    <md-input-container class="form-row">
+      <input mdInput placeholder="Name" value="BOSS" />
+    </md-input-container>
+
+    <h3>Stats</h3>
+
+    <table class="form-row">
+      <tr>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Current HP" value="500" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="HP Max" value="1000" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+    <table class="form-row">
+      <tr>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Current MP" value="50" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="MP Max" value="100" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <md-input-container class="form-row">
+      <input mdInput placeholder="Current absorbs" value="0" />
+    </md-input-container>
+
+    <h3>Spells</h3>
+
+    <table class="form-row">
+      <tr>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Magic shield cost (MP)" value="20" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Damage reduce (%)" value="30" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Amount of attacks" value="3" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <table class="form-row">
+      <tr>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Magic absorb cost (MP)" value="50" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Amount of HP" value="300" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+
+    <h3>Options</h3>
+
+    <table class="form-row">
+      <tr>
+        <td width="50%">
+          <md-slide-toggle checked="true">HP buff</md-slide-toggle>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="HP buff value (HP)" value="200" />
+            <md-hint align="end">HP buff when the boss is killed</md-hint>
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <table class="form-row">
+      <tr>
+        <td width="50%">
+          <md-slide-toggle checked="true">Critical hits</md-slide-toggle>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Critical hits value (%)" value="20" />
+            <md-hint align="end">Damage and Healing</md-hint>
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <table class="form-row">
+      <tr>
+        <td width="50%">
+          <md-slide-toggle checked="true">Dodge</md-slide-toggle>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Dodge value (%)" value="20" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <table class="form-row">
+      <tr>
+        <td width="50%">
+          <md-slide-toggle checked="true">Subscriber bonus</md-slide-toggle>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Subscriber bonus value (%)" value="10" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
+
+    <!--
+    <md-slider min="0" max="100" step="10" value="10" thumbLabel tickInterval="1" class="form-row">test</md-slider>
+    -->
+
+  </md-card-content>
+  <md-card-actions>
+    <button type="submit" md-button>Update</button>
+  </md-card-actions>
+  </form>
+</md-card>

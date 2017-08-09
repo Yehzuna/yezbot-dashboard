@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import {
     MdButtonModule,
-    MdInputModule,
     MdRippleModule
 } from '@angular/material';
 
@@ -30,7 +29,6 @@ import { AlertComponent } from './alert/alert.component';
         BrowserAnimationsModule,
         HttpModule,
         MdButtonModule,
-        MdInputModule,
         MdRippleModule,
         RoutingModule
     ],

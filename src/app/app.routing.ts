@@ -20,9 +20,8 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuard]
     }, {
-        path: 'emotes',
-        loadChildren: 'app/emotes/emotes.module#EmotesModule',
-        canActivate: [AuthGuard]
+        path: 'boss',
+        loadChildren: 'app/boss/boss.module#BossModule',
     }, {
         path: '**',
         redirectTo: ''
