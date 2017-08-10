@@ -1,6 +1,6 @@
-<md-card style="width: 500px">
-  <form name="form" id="form" class="boss-form">
+<form name="form" id="form" class="boss-form" #bossForm="ngForm">
 
+<md-card style="width: 500px">
   <md-card-header>
     <md-card-title><h2>BossMod</h2></md-card-title>
   </md-card-header>
@@ -11,7 +11,13 @@
     </md-input-container>
 
     <md-input-container class="form-row">
-      <input mdInput placeholder="Name" value="BOSS" />
+      <input mdInput placeholder="Name" [(ngModel)]="model.name" name="name" required />
+      <md-error>Invalid name</md-error>
+    </md-input-container>
+
+    <md-input-container class="form-row">
+      <input type="url" mdInput placeholder="Image" [(ngModel)]="model.img" name="img" required />
+      <md-error>Invalid url</md-error>
     </md-input-container>
 
     <h3>Stats</h3>
@@ -20,12 +26,13 @@
       <tr>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Current HP" value="500" />
+            <input mdInput placeholder="Current HP" [(ngModel)]="model.hp" name="hp" #hp="ngModel" required />
+            <div [hidden]="hp.valid">Invalid value.</div>
           </md-input-container>
         </td>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="HP Max" value="1000" />
+            <input mdInput placeholder="HP Max" [(ngModel)]="model.hpMax" name="hpMax" required />
           </md-input-container>
         </td>
       </tr>
@@ -34,19 +41,19 @@
       <tr>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Current MP" value="50" />
+            <input mdInput placeholder="Current MP" [(ngModel)]="model.mp" name="mp" required />
           </md-input-container>
         </td>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="MP Max" value="100" />
+            <input mdInput placeholder="MP Max" [(ngModel)]="model.mpMax" name="mpMax" required />
           </md-input-container>
         </td>
       </tr>
     </table>
 
     <md-input-container class="form-row">
-      <input mdInput placeholder="Current absorbs" value="0" />
+      <input mdInput placeholder="Current absorbs" [(ngModel)]="model.absorbs" name="absorbs" />
     </md-input-container>
 
     <h3>Spells</h3>
@@ -55,17 +62,17 @@
       <tr>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Magic shield cost (MP)" value="20" />
+            <input mdInput placeholder="Magic shield cost (MP)" [(ngModel)]="model.shieldCost" name="shieldCost" />
           </md-input-container>
         </td>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Damage reduce (%)" value="30" />
+            <input mdInput placeholder="Damage reduce (%)" [(ngModel)]="model.shieldValue" name="shieldValue" />
           </md-input-container>
         </td>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Amount of attacks" value="3" />
+            <input mdInput placeholder="Amount of attacks" [(ngModel)]="model.shieldAmount" name="shieldAmount" />
           </md-input-container>
         </td>
       </tr>
@@ -75,12 +82,12 @@
       <tr>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Magic absorb cost (MP)" value="50" />
+            <input mdInput placeholder="Magic block cost (MP)" [(ngModel)]="model.blockCost" name="blockCost" />
           </md-input-container>
         </td>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Amount of HP" value="300" />
+            <input mdInput placeholder="Amount of HP" [(ngModel)]="model.blockValue" name="blockValue" />
           </md-input-container>
         </td>
       </tr>
@@ -92,11 +99,11 @@
     <table class="form-row">
       <tr>
         <td width="50%">
-          <md-slide-toggle checked="true">HP buff</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="model.buff" name="buff">HP buff</md-slide-toggle>
         </td>
-        <td>
+        <td [hidden]="!model.buff">
           <md-input-container class="form-row">
-            <input mdInput placeholder="HP buff value (HP)" value="200" />
+            <input mdInput placeholder="HP buff value (HP)" [(ngModel)]="model.buffValue" name="buffValue" />
             <md-hint align="end">HP buff when the boss is killed</md-hint>
           </md-input-container>
         </td>
@@ -106,11 +113,11 @@
     <table class="form-row">
       <tr>
         <td width="50%">
-          <md-slide-toggle checked="true">Critical hits</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="model.critical" name="critical">Critical hits</md-slide-toggle>
         </td>
-        <td>
+        <td [hidden]="!model.critical">
           <md-input-container class="form-row">
-            <input mdInput placeholder="Critical hits value (%)" value="20" />
+            <input mdInput placeholder="Critical hits value (%)" [(ngModel)]="model.criticalValue" name="criticalValue" max="100" min="1" />
             <md-hint align="end">Damage and Healing</md-hint>
           </md-input-container>
         </td>
@@ -120,11 +127,11 @@
     <table class="form-row">
       <tr>
         <td width="50%">
-          <md-slide-toggle checked="true">Dodge</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="model.dodge" name="dodge">Dodge</md-slide-toggle>
         </td>
-        <td>
+        <td [hidden]="!model.dodge">
           <md-input-container class="form-row">
-            <input mdInput placeholder="Dodge value (%)" value="20" />
+            <input mdInput placeholder="Dodge value (%)" [(ngModel)]="model.dodgeValue" name="dodgeValue" max="100" min="1" />
           </md-input-container>
         </td>
       </tr>
@@ -133,23 +140,21 @@
     <table class="form-row">
       <tr>
         <td width="50%">
-          <md-slide-toggle checked="true">Subscriber bonus</md-slide-toggle>
+          <md-slide-toggle [(ngModel)]="model.subscriber" name="subscriber">Subscriber bonus</md-slide-toggle>
         </td>
-        <td>
+        <td  [hidden]="!model.subscriber">
           <md-input-container class="form-row">
-            <input mdInput placeholder="Subscriber bonus value (%)" value="10" />
+            <input mdInput placeholder="Subscriber bonus value (%)" [(ngModel)]="model.subscriberValue" name="subscriberValue" />
           </md-input-container>
         </td>
       </tr>
     </table>
 
-    <!--
-    <md-slider min="0" max="100" step="10" value="10" thumbLabel tickInterval="1" class="form-row">test</md-slider>
-    -->
-
   </md-card-content>
   <md-card-actions>
     <button type="submit" md-button>Update</button>
   </md-card-actions>
-  </form>
+
 </md-card>
+
+</form>
