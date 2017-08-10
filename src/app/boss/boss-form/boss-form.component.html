@@ -26,8 +26,8 @@
       <tr>
         <td>
           <md-input-container class="form-row">
-            <input mdInput placeholder="Current HP" [(ngModel)]="model.hp" name="hp" #hp="ngModel" required />
-            <div [hidden]="hp.valid">Invalid value.</div>
+            <input mdInput placeholder="Current HP" [(ngModel)]="model.hp" name="hp" #hp="ngModel" required [errorStateMatcher]="hpValidation" />
+            <md-error>Invalid value</md-error>
           </md-input-container>
         </td>
         <td>
@@ -51,10 +51,20 @@
         </td>
       </tr>
     </table>
-
-    <md-input-container class="form-row">
-      <input mdInput placeholder="Current absorbs" [(ngModel)]="model.absorbs" name="absorbs" />
-    </md-input-container>
+    <table class="form-row">
+      <tr>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Remaining attacks of damage reduce" [(ngModel)]="model.reduce" name="reduce" />
+          </md-input-container>
+        </td>
+        <td>
+          <md-input-container class="form-row">
+            <input mdInput placeholder="Current absorbs" [(ngModel)]="model.absorbs" name="absorbs" />
+          </md-input-container>
+        </td>
+      </tr>
+    </table>
 
     <h3>Spells</h3>
 
@@ -144,7 +154,8 @@
         </td>
         <td  [hidden]="!model.subscriber">
           <md-input-container class="form-row">
-            <input mdInput placeholder="Subscriber bonus value (%)" [(ngModel)]="model.subscriberValue" name="subscriberValue" />
+            <input mdInput placeholder="Subscriber bonus value (%)" [(ngModel)]="model.subscriberValue" name="subscriberValue" [errorStateMatcher]="percentValidation" />
+            <md-error>Invalid value</md-error>
           </md-input-container>
         </td>
       </tr>
