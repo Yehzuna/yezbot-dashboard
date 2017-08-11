@@ -10,6 +10,17 @@
 
 .form-row {
   width: 100%;
+  td:first-child:nth-last-child(1) {
+    width: 100%;
+  }
+  td:first-child:nth-last-child(2),
+  td:first-child:nth-last-child(2) ~ td {
+    width: 50%;
+  }
+  td:first-child:nth-last-child(3),
+  td:first-child:nth-last-child(3) ~ td {
+    width: 33.3333%;
+  }
 }
 
 .form-element {

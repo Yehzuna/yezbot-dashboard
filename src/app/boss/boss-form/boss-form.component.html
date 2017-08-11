@@ -1,171 +1,184 @@
-<form name="form" id="form" class="boss-form" #bossForm="ngForm">
+<form name="boss-form" class="boss-form" #bossForm="ngForm" (ngSubmit)="onSubmit()">
 
-<md-card style="width: 500px">
-  <md-card-header>
-    <md-card-title><h2>BossMod</h2></md-card-title>
-  </md-card-header>
-  <md-card-content class="form-container">
+    <md-card style="width: 500px">
+        <md-card-header>
+            <md-card-title><h2>BossMod</h2></md-card-title>
+        </md-card-header>
 
-    <md-input-container class="form-row">
-      <input mdInput placeholder="Channel" value="channel" disabled />
-    </md-input-container>
+        <md-card-content class="form-container">
 
-    <md-input-container class="form-row">
-      <input mdInput placeholder="Name" [(ngModel)]="model.name" name="name" required />
-      <md-error>Invalid name</md-error>
-    </md-input-container>
+            <md-input-container class="form-row">
+                <input mdInput placeholder="Channel" [value]="model.channel" name="channel" disabled/>
+            </md-input-container>
 
-    <md-input-container class="form-row">
-      <input type="url" mdInput placeholder="Image" [(ngModel)]="model.img" name="img" required />
-      <md-error>Invalid url</md-error>
-    </md-input-container>
+            <md-input-container class="form-row">
+                <input mdInput placeholder="Name" [(ngModel)]="model.name" name="name" required/>
+                <md-error>Invalid name</md-error>
+            </md-input-container>
 
-    <h3>Stats</h3>
+            <md-input-container class="form-row">
+                <input type="url" mdInput placeholder="Image" [(ngModel)]="model.img" name="img" required/>
+                <md-error>Invalid url</md-error>
+            </md-input-container>
 
-    <table class="form-row">
-      <tr>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Current HP" [(ngModel)]="model.hp" name="hp" #hp="ngModel" required [errorStateMatcher]="hpValidation" />
-            <md-error>Invalid value</md-error>
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="HP Max" [(ngModel)]="model.hpMax" name="hpMax" required />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
-    <table class="form-row">
-      <tr>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Current MP" [(ngModel)]="model.mp" name="mp" required />
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="MP Max" [(ngModel)]="model.mpMax" name="mpMax" required />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
-    <table class="form-row">
-      <tr>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Remaining attacks of damage reduce" [(ngModel)]="model.reduce" name="reduce" />
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Current absorbs" [(ngModel)]="model.absorbs" name="absorbs" />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <h3>Stats</h3>
 
-    <h3>Spells</h3>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Current HP" [(ngModel)]="model.hp" name="hp" required [errorStateMatcher]="hpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="HP Max" [(ngModel)]="model.hpMax" name="hpMax" required [errorStateMatcher]="hpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Current MP" [(ngModel)]="model.mp" name="mp" required [errorStateMatcher]="mpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="MP Max" [(ngModel)]="model.mpMax" name="mpMax" required [errorStateMatcher]="mpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Remaining attacks of damage reduce" [(ngModel)]="model.reduce" name="reduce" [errorStateMatcher]="numberValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Current absorbs" [(ngModel)]="model.absorbs" name="absorbs" [errorStateMatcher]="numberValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-    <table class="form-row">
-      <tr>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Magic shield cost (MP)" [(ngModel)]="model.shieldCost" name="shieldCost" />
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Damage reduce (%)" [(ngModel)]="model.shieldValue" name="shieldValue" />
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Amount of attacks" [(ngModel)]="model.shieldAmount" name="shieldAmount" />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <h3>Spells</h3>
 
-    <table class="form-row">
-      <tr>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Magic block cost (MP)" [(ngModel)]="model.blockCost" name="blockCost" />
-          </md-input-container>
-        </td>
-        <td>
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Amount of HP" [(ngModel)]="model.blockValue" name="blockValue" />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Magic shield cost (MP)" [(ngModel)]="model.shieldCost" name="shieldCost" [errorStateMatcher]="mpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Damage reduce (%)" [(ngModel)]="model.shieldValue" name="shieldValue" [errorStateMatcher]="percentValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Amount of attacks" [(ngModel)]="model.shieldAmount" name="shieldAmount" [errorStateMatcher]="numberValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Magic block cost (MP)" [(ngModel)]="model.blockCost" name="blockCost" [errorStateMatcher]="mpValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                    <td>
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Amount of HP" [(ngModel)]="model.blockValue" name="blockValue" [errorStateMatcher]="numberValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-    <h3>Options</h3>
+            <h3>Options</h3>
 
-    <table class="form-row">
-      <tr>
-        <td width="50%">
-          <md-slide-toggle [(ngModel)]="model.buff" name="buff">HP buff</md-slide-toggle>
-        </td>
-        <td [hidden]="!model.buff">
-          <md-input-container class="form-row">
-            <input mdInput placeholder="HP buff value (HP)" [(ngModel)]="model.buffValue" name="buffValue" />
-            <md-hint align="end">HP buff when the boss is killed</md-hint>
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-slide-toggle [(ngModel)]="model.buff" name="buff">HP buff</md-slide-toggle>
+                    </td>
+                    <td [hidden]="!model.buff">
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="HP buff value (HP)" [(ngModel)]="model.buffValue" name="buffValue" [errorStateMatcher]="numberValidator"/>
+                            <md-hint align="end">HP buff when the boss is killed</md-hint>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-    <table class="form-row">
-      <tr>
-        <td width="50%">
-          <md-slide-toggle [(ngModel)]="model.critical" name="critical">Critical hits</md-slide-toggle>
-        </td>
-        <td [hidden]="!model.critical">
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Critical hits value (%)" [(ngModel)]="model.criticalValue" name="criticalValue" max="100" min="1" />
-            <md-hint align="end">Damage and Healing</md-hint>
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-slide-toggle [(ngModel)]="model.critical" name="critical">Critical hits</md-slide-toggle>
+                    </td>
+                    <td [hidden]="!model.critical">
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Critical hits value (%)" [(ngModel)]="model.criticalValue" name="criticalValue" [errorStateMatcher]="percentValidator"/>
+                            <md-hint align="end">Damage and Healing</md-hint>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-    <table class="form-row">
-      <tr>
-        <td width="50%">
-          <md-slide-toggle [(ngModel)]="model.dodge" name="dodge">Dodge</md-slide-toggle>
-        </td>
-        <td [hidden]="!model.dodge">
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Dodge value (%)" [(ngModel)]="model.dodgeValue" name="dodgeValue" max="100" min="1" />
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-slide-toggle [(ngModel)]="model.dodge" name="dodge">Dodge</md-slide-toggle>
+                    </td>
+                    <td [hidden]="!model.dodge">
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Dodge value (%)" [(ngModel)]="model.dodgeValue" name="dodgeValue" [errorStateMatcher]="percentValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-    <table class="form-row">
-      <tr>
-        <td width="50%">
-          <md-slide-toggle [(ngModel)]="model.subscriber" name="subscriber">Subscriber bonus</md-slide-toggle>
-        </td>
-        <td  [hidden]="!model.subscriber">
-          <md-input-container class="form-row">
-            <input mdInput placeholder="Subscriber bonus value (%)" [(ngModel)]="model.subscriberValue" name="subscriberValue" [errorStateMatcher]="percentValidation" />
-            <md-error>Invalid value</md-error>
-          </md-input-container>
-        </td>
-      </tr>
-    </table>
+            <table class="form-row">
+                <tr>
+                    <td>
+                        <md-slide-toggle [(ngModel)]="model.subscriber" name="subscriber">Subscriber bonus</md-slide-toggle>
+                    </td>
+                    <td [hidden]="!model.subscriber">
+                        <md-input-container class="form-row">
+                            <input mdInput placeholder="Subscriber bonus value (%)" [(ngModel)]="model.subscriberValue" name="subscriberValue" [errorStateMatcher]="percentValidator"/>
+                            <md-error>Invalid value</md-error>
+                        </md-input-container>
+                    </td>
+                </tr>
+            </table>
 
-  </md-card-content>
-  <md-card-actions>
-    <button type="submit" md-button>Update</button>
-  </md-card-actions>
+        </md-card-content>
 
-</md-card>
+        <md-card-actions>
+            <button type="submit" md-button [disabled]="!bossForm.form.valid">Update</button>
+        </md-card-actions>
 
+    </md-card>
 </form>
